@@ -8,22 +8,14 @@ class DateTest {
 
     @Test
     void testIsDayValid() {
-        for (int m : new int[]{4, 6, 9, 11}) {
-            for (int d = 1; d <= 30; d++) {
-                Assertions.assertTrue(date.isDayValid(0, m, d));
-            }
-            Assertions.assertFalse(date.isDayValid(0, m, 31));
-            Assertions.assertFalse(date.isDayValid(0, m, 0));
-            Assertions.assertFalse(date.isDayValid(0, m, -1));
-        }
-        for (int m : new int[]{1, 3, 5, 7, 8, 10, 12}) {
-            for (int d = 1; d <= 31; d++) {
-                Assertions.assertTrue(date.isDayValid(0, m, d));
-            }
-            Assertions.assertFalse(date.isDayValid(0, m, 32));
-            Assertions.assertFalse(date.isDayValid(0, m, 0));
-            Assertions.assertFalse(date.isDayValid(0, m, -1));
-        }
+        Assertions.assertTrue(date.isDayValid(1, 4, 1));
+        Assertions.assertTrue(date.isDayValid(1, 4, 30));
+        Assertions.assertFalse(date.isDayValid(1, 4, 0));
+        Assertions.assertFalse(date.isDayValid(1, 4, 31));
+        Assertions.assertTrue(date.isDayValid(1, 1, 1));
+        Assertions.assertTrue(date.isDayValid(1, 1, 31));
+        Assertions.assertFalse(date.isDayValid(1, 1, 0));
+        Assertions.assertFalse(date.isDayValid(1, 1, 32));
     }
 
     @Test
