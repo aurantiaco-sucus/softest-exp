@@ -44,7 +44,7 @@ public class Date {
         if ((month == 1 || month == 3 || month == 5 || month == 7|| month == 8 || month == 10 || month == 12)
                 && (day > 31 || day < 1))
             return false;
-        if(month == 2 && DateUtil.isLeapYear(year) && (day >= 1 || day <= 29)) return true;
+        if(month == 2 && DateUtil.isLeapYear(year) && (day >= 1 && day <= 29)) return true;
         if(month == 2 && DateUtil.isLeapYear(year) && (day < 1 || day > 29)) return false;
         if(month == 2 && !DateUtil.isLeapYear(year) && (day >= 1 && day <= 28)) return true;
         if(month == 2 && !DateUtil.isLeapYear(year) && (day < 1 || day > 28)) return false;

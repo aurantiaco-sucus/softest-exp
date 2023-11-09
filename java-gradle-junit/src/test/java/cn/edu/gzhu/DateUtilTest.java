@@ -7,8 +7,7 @@ class DateUtilTest {
 
     @Test
     void testIsLeapYear() {
-        boolean result = DateUtil.isLeapYear(0);
-        Assertions.assertEquals(true, result);
+        Assertions.assertTrue(DateUtil.isLeapYear(4));
     }
 
     @Test
