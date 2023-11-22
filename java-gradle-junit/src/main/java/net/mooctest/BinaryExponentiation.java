@@ -10,6 +10,9 @@ package net.mooctest;
 public class BinaryExponentiation {
     // recursive function to calculate a to the power of b
     public static long calculatePower(long x, long y) {
+        if (y < 0) {
+
+        }
         if (y == 0) {
             return 1;
         }
@@ -20,7 +23,7 @@ public class BinaryExponentiation {
         return val * val * x;
     }
     // iterative function to calculate a to the power of b
-    long power(long N, long M) {
+    public static long power(long N, long M) {
         long power = N, sum = 1;
         while (M > 0) {
             if ((M & 1) == 1) {
