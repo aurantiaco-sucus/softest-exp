@@ -1,0 +1,8 @@
+PLATFORM: x86, 1a64, amd64
+CPUS: Single, Dual, Quad
+RAM: 128MB, 1GB, 4GB, 64GB
+HDD: SCSI, IDE
+OS: NT4, WinXP, Win7, Win10
+IE: 8.0, 9.0, 10.0, 11.0
+{PLATFORM, CPUS, HDD} @ 2
+{OS, IE, RAM} @ 2
