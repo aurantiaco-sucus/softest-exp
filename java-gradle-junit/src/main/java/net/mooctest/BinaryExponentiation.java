@@ -13,6 +13,7 @@ public class BinaryExponentiation {
         if (y < 0) {
             if (x == 0) throw new IllegalArgumentException(
                     "0 to the power of -1 is undefined, and same for any negative numbers.");
+            if (Math.abs(x) == 1) return calculatePower(x, -y);
             return 0;
         }
         if (y == 0) {
@@ -27,6 +28,9 @@ public class BinaryExponentiation {
     // iterative function to calculate a to the power of b
     public static long power(long N, long M) {
         if (M < 0) {
+            if (N == 0) throw new IllegalArgumentException(
+                    "0 to the power of -1 is undefined, and same for any negative numbers.");
+            if (Math.abs(N) == 1) return power(N, -M);
             return 0;
         }
         long power = N, sum = 1;

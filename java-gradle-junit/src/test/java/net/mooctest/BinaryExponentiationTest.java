@@ -33,6 +33,13 @@ class BinaryExponentiationTest {
         assertEquals(0, BinaryExponentiation.calculatePower(-3, -1));
         // division by zero
         assertThrows(Exception.class, () -> BinaryExponentiation.calculatePower(0, -1));
+        // special cases
+        assertEquals(1, BinaryExponentiation.calculatePower(0, 0));
+        assertEquals(1, BinaryExponentiation.calculatePower(1, -1));
+        assertEquals(-1, BinaryExponentiation.calculatePower(-1, -1));
+        assertEquals(1, BinaryExponentiation.calculatePower(1, -3));
+        assertEquals(-1, BinaryExponentiation.calculatePower(-1, -3));
+        assertEquals(1, BinaryExponentiation.calculatePower(1, -2));
     }
 
     @Test
