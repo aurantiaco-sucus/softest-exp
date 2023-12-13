@@ -1,0 +1,566 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="中国标准时间">
+<General productName="HP Unified Functional Testing" productVer="11.50" os="Windows 7" host="VMX"><DocLocation><![CDATA[C:\Users\Virtual\Documents\Unified Functional Testing\mf4]]></DocLocation></General>
+<Doc rID="T1"   productName= "HP Unified Functional Testing"  >
+<DName><![CDATA[mf4]]></DName>
+<Res><![CDATA[Res4]]></Res>
+<DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xls]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<DIter rID="T3" iterID="1" >
+<Action rID="T4">
+<AName><![CDATA[Login]]></AName>
+<Step rID="T5">
+<Obj plainTxt="False" ><![CDATA[Login]]></Obj>
+<Details plainTxt="False" ><![CDATA[Dialog]]></Details>
+<Time><![CDATA[2023/12/12 - 23:18:14]]></Time>
+<TimeTick>1702394294</TimeTick>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA[Agent Name:.SetText]]></Obj>
+<Details plainTxt="False" ><![CDATA["jingzhi"]]></Details>
+<Time><![CDATA[2023/12/12 - 23:18:14]]></Time>
+<TimeTick>1702394294</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="10" Source="Login" SourceLine="0" >
+<Disp><![CDATA[Agent Name:.SetText]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA[Password:.SetSecureText]]></Obj>
+<Details plainTxt="False" ><![CDATA["657878efd5ec59bb72e506d2fb054e8fb6715bde"]]></Details>
+<Time><![CDATA[2023/12/12 - 23:18:14]]></Time>
+<TimeTick>1702394294</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="12" Source="Login" SourceLine="1" >
+<Disp><![CDATA[Password:.SetSecureText]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[OK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2023/12/12 - 23:18:14]]></Time>
+<TimeTick>1702394294</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="14" Source="Login" SourceLine="2" >
+<Disp><![CDATA[OK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="9" Source="Login" SourceLine="0" >
+<Disp><![CDATA[Login]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2023/12/12 - 23:18:14" eTime="2023/12/12 - 23:18:14" passed="0" failed="0" warnings="0" ></Summary>
+
+<ActionMaintenanceSummary Action="Login" Objects="0" Updated="0" Added="0" LinesTotal="0" LinesUpdated="0">
+</ActionMaintenanceSummary><NodeArgs eType="StartAction" icon="4" nRep="7" >
+<Disp><![CDATA[Login Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T9">
+<AName><![CDATA[BookFlight]]></AName>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA[Flight Reservation]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[2023/12/12 - 23:18:16]]></Time>
+<TimeTick>1702394296</TimeTick>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[MaskEdBox.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["010124"]]></Details>
+<Time><![CDATA[2023/12/12 - 23:18:16]]></Time>
+<TimeTick>1702394296</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="19" Source="BookFlight" SourceLine="0" >
+<Disp><![CDATA[MaskEdBox.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA[Fly From:.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["London"]]></Details>
+<Time><![CDATA[2023/12/12 - 23:18:17]]></Time>
+<TimeTick>1702394297</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="21" Source="BookFlight" SourceLine="1" >
+<Disp><![CDATA[Fly From:.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA[Fly To:.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["Denver"]]></Details>
+<Time><![CDATA[2023/12/12 - 23:18:17]]></Time>
+<TimeTick>1702394297</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="23" Source="BookFlight" SourceLine="2" >
+<Disp><![CDATA[Fly To:.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T14">
+<Obj plainTxt="False" ><![CDATA[FLIGHT.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2023/12/12 - 23:18:17]]></Time>
+<TimeTick>1702394297</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="25" Source="BookFlight" SourceLine="3" >
+<Disp><![CDATA[FLIGHT.Click]]></Disp>
+</NodeArgs>
+</Step>
+<HtmlStep rID="T15">
+<HTML><![CDATA[<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<span class="text"><head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<link rel="stylesheet" href="C:\Program Files\HP\QuickTest Professional\dat\Results.css">
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td height="1" class="bg_midblue"></td></tr>
+<tr><td height="30"><p><span class="hl1"> Step Name:<b> Maintenance Mode Update Result</span></b></p></td></tr>
+<tr><td height="2" class="bg_darkblue"></td></tr>
+<tr><td height="30"><span class="Done"> Step Done</span></td></tr>
+<tr><td height="5"></td></tr>
+</table>
+
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+<tr><td bgcolor="white">
+                                       
+      <table border="0" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+          <td valign="middle" align="left" class="tablehl"> <span class="tablehl">Action  </span> </td>
+         <td valign="middle" align="left" class="tablehl"> <span class="tablehl">Details </span> </td>
+ </tr>
+ <tr >
+         <td  height="1" class="bg_darkblue"></td>
+         <td  height="1" class="bg_darkblue"></td>
+ </tr>
+<TR>
+        <td><span class="text">Object repository was updated by maintenance mode</span></td>
+       <TD><span class="text">Test Object added to repository 'Window("Flight Reservation").Dialog("Flights Table").WinButton("OK")'</span></TD>
+</TR>
+<tr>
+  <td height="1" class="bg_gray_eee"></td>
+  <td height="1" class="bg_gray_eee"></td>
+</tr>
+</table> 
+</td></tr>
+</table></center>
+</BODY></span>]]></HTML>
+<TimeTick>1702394304</TimeTick>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA[Flights Table]]></Obj>
+<Details plainTxt="False" ><![CDATA[Dialog]]></Details>
+<Time><![CDATA[2023/12/12 - 23:18:24]]></Time>
+<TimeTick>1702394304</TimeTick>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA[OK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2023/12/12 - 23:18:24]]></Time>
+<TimeTick>1702394304</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="30" Source="BookFlight" SourceLine="4" >
+<Disp><![CDATA[OK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="29" Source="BookFlight" SourceLine="4" >
+<Disp><![CDATA[Flights Table]]></Disp>
+</NodeArgs>
+</Step>
+<HtmlStep rID="T18">
+<HTML><![CDATA[<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<span class="text"><head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<link rel="stylesheet" href="C:\Program Files\HP\QuickTest Professional\dat\Results.css">
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td height="1" class="bg_midblue"></td></tr>
+<tr><td height="30"><p><span class="hl1"> Step Name:<b> Maintenance Mode Update Result</span></b></p></td></tr>
+<tr><td height="2" class="bg_darkblue"></td></tr>
+<tr><td height="30"><span class="Done"> Step Done</span></td></tr>
+<tr><td height="5"></td></tr>
+</table>
+
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+<tr><td bgcolor="white">
+                                       
+      <table border="0" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+          <td valign="middle" align="left" class="tablehl"> <span class="tablehl">Action  </span> </td>
+         <td valign="middle" align="left" class="tablehl"> <span class="tablehl">Details </span> </td>
+ </tr>
+ <tr >
+         <td  height="1" class="bg_darkblue"></td>
+         <td  height="1" class="bg_darkblue"></td>
+ </tr>
+<TR>
+        <td><span class="text">Object repository was updated by maintenance mode</span></td>
+       <TD><span class="text">Test Object added to repository 'Window("Flight Reservation").WinEdit("Name:")'</span></TD>
+</TR>
+<tr>
+  <td height="1" class="bg_gray_eee"></td>
+  <td height="1" class="bg_gray_eee"></td>
+</tr>
+</table> 
+</td></tr>
+</table></center>
+</BODY></span>]]></HTML>
+<TimeTick>1702394309</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="32" Source="BookFlight" SourceLine="5" >
+<Disp><![CDATA[Maintenance]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[Name:.SetText]]></Obj>
+<Details plainTxt="False" ><![CDATA["Midnight233"]]></Details>
+<Time><![CDATA[2023/12/12 - 23:18:29]]></Time>
+<TimeTick>1702394309</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="34" Source="BookFlight" SourceLine="5" >
+<Disp><![CDATA[Name:.SetText]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="11" nRep="27" Source="BookFlight" SourceLine="4" >
+<Disp><![CDATA[Maintenance]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<HtmlStep rID="T20">
+<HTML><![CDATA[<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<span class="text"><head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<link rel="stylesheet" href="C:\Program Files\HP\QuickTest Professional\dat\Results.css">
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td height="1" class="bg_midblue"></td></tr>
+<tr><td height="30"><p><span class="hl1"> Step Name:<b> Maintenance Mode Update Result</span></b></p></td></tr>
+<tr><td height="2" class="bg_darkblue"></td></tr>
+<tr><td height="30"><span class="Done"> Step Done</span></td></tr>
+<tr><td height="5"></td></tr>
+</table>
+
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+<tr><td bgcolor="white">
+                                       
+      <table border="0" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+          <td valign="middle" align="left" class="tablehl"> <span class="tablehl">Action  </span> </td>
+         <td valign="middle" align="left" class="tablehl"> <span class="tablehl">Details </span> </td>
+ </tr>
+ <tr >
+         <td  height="1" class="bg_darkblue"></td>
+         <td  height="1" class="bg_darkblue"></td>
+ </tr>
+<TR>
+        <td><span class="text">Object repository was updated by maintenance mode</span></td>
+       <TD><span class="text">Test Object added to repository 'Window("Flight Reservation").WinButton("Insert Order")'</span></TD>
+</TR>
+<tr>
+  <td height="1" class="bg_gray_eee"></td>
+  <td height="1" class="bg_gray_eee"></td>
+</tr>
+</table> 
+</td></tr>
+</table></center>
+</BODY></span>]]></HTML>
+<TimeTick>1702394314</TimeTick>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA[Insert Order.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2023/12/12 - 23:18:34]]></Time>
+<TimeTick>1702394314</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="38" Source="BookFlight" SourceLine="6" >
+<Disp><![CDATA[Insert Order.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="11" nRep="36" Source="BookFlight" SourceLine="6" >
+<Disp><![CDATA[Maintenance]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="8" nRep="18" Source="BookFlight" SourceLine="0" >
+<Disp><![CDATA[Flight Reservation]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2023/12/12 - 23:18:14" eTime="2023/12/12 - 23:18:34" passed="0" failed="0" warnings="0" ></Summary>
+
+<ActionMaintenanceSummary Action="BookFlight" Objects="3" Updated="0" Added="3" LinesTotal="0" LinesUpdated="0">
+<ObjectChange Operation="Added">
+<Hierarchy  MicClass="Window">
+<ObjectName><![CDATA[Flight Reservation]]></ObjectName>
+<Hierarchy  MicClass="Dialog">
+<ObjectName><![CDATA[Flights Table]]></ObjectName>
+<Hierarchy  MicClass="WinButton">
+<ObjectName><![CDATA[OK]]></ObjectName>
+</Hierarchy>
+</Hierarchy>
+</Hierarchy>
+</ObjectChange>
+<ObjectChange Operation="Added">
+<Hierarchy  MicClass="Window">
+<ObjectName><![CDATA[Flight Reservation]]></ObjectName>
+<Hierarchy  MicClass="WinEdit">
+<ObjectName><![CDATA[Name:]]></ObjectName>
+</Hierarchy>
+</Hierarchy>
+</ObjectChange>
+<ObjectChange Operation="Added">
+<Hierarchy  MicClass="Window">
+<ObjectName><![CDATA[Flight Reservation]]></ObjectName>
+<Hierarchy  MicClass="WinButton">
+<ObjectName><![CDATA[Insert Order]]></ObjectName>
+</Hierarchy>
+</Hierarchy>
+</ObjectChange>
+</ActionMaintenanceSummary><NodeArgs eType="StartAction" icon="4" nRep="16" >
+<Disp><![CDATA[BookFlight Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T22">
+<AName><![CDATA[Exit]]></AName>
+<HtmlStep rID="T23">
+<HTML><![CDATA[<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<span class="text"><head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<link rel="stylesheet" href="C:\Program Files\HP\QuickTest Professional\dat\Results.css">
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td height="1" class="bg_midblue"></td></tr>
+<tr><td height="30"><p><span class="hl1"> Step Name:<b> Maintenance Mode Update Result</span></b></p></td></tr>
+<tr><td height="2" class="bg_darkblue"></td></tr>
+<tr><td height="30"><span class="Done"> Step Done</span></td></tr>
+<tr><td height="5"></td></tr>
+</table>
+
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+<tr><td bgcolor="white">
+                                       
+      <table border="0" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+          <td valign="middle" align="left" class="tablehl"> <span class="tablehl">Action  </span> </td>
+         <td valign="middle" align="left" class="tablehl"> <span class="tablehl">Details </span> </td>
+ </tr>
+ <tr >
+         <td  height="1" class="bg_darkblue"></td>
+         <td  height="1" class="bg_darkblue"></td>
+ </tr>
+<TR>
+        <td><span class="text">Object repository was updated by maintenance mode</span></td>
+       <TD><span class="text">Test Object added to repository 'Window("Flight Reservation")'</span></TD>
+</TR>
+<tr>
+  <td height="1" class="bg_gray_eee"></td>
+  <td height="1" class="bg_gray_eee"></td>
+</tr>
+</table> 
+</td></tr>
+</table></center>
+</BODY></span>]]></HTML>
+<TimeTick>1702394325</TimeTick>
+<Step rID="T24">
+<Obj plainTxt="False" ><![CDATA[Flight Reservation]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[2023/12/12 - 23:18:45]]></Time>
+<TimeTick>1702394325</TimeTick>
+<Step rID="T25">
+<Obj plainTxt="False" ><![CDATA[Flight Reservation.Close]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2023/12/12 - 23:18:45]]></Time>
+<TimeTick>1702394325</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="44" Source="Exit" SourceLine="0" >
+<Disp><![CDATA[Flight Reservation.Close]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="43" Source="Exit" SourceLine="0" >
+<Disp><![CDATA[Flight Reservation]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="11" nRep="41" Source="Exit" SourceLine="0" >
+<Disp><![CDATA[Maintenance]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<Summary sTime="2023/12/12 - 23:18:34" eTime="2023/12/12 - 23:18:45" passed="0" failed="0" warnings="0" ></Summary>
+
+<ActionMaintenanceSummary Action="Exit" Objects="1" Updated="0" Added="1" LinesTotal="0" LinesUpdated="0">
+<ObjectChange Operation="Added">
+<Hierarchy  MicClass="Window">
+<ObjectName><![CDATA[Flight Reservation]]></ObjectName>
+</Hierarchy>
+</ObjectChange>
+</ActionMaintenanceSummary><NodeArgs eType="StartAction" icon="4" nRep="40" >
+<Disp><![CDATA[Exit Summary]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="6" >
+<Disp><![CDATA[mf4 Iteration 1 (Row 1)]]></Disp>
+</NodeArgs>
+</DIter>
+<Summary sTime="2023/12/12 - 23:18:13" eTime="2023/12/12 - 23:18:45" passed="0" failed="0" warnings="0" ></Summary>
+
+<TestMaintenanceSummary ObjectsAdded="4" ObjectsUpdated="0" StepsUpdated="0" StepsComments="0">
+<ActionMaintenanceSummary Action="BookFlight" Objects="3" Updated="0" Added="3" LinesTotal="0" LinesUpdated="0">
+<ObjectChange Operation="Added">
+<Hierarchy  MicClass="Window">
+<ObjectName><![CDATA[Flight Reservation]]></ObjectName>
+<Hierarchy  MicClass="Dialog">
+<ObjectName><![CDATA[Flights Table]]></ObjectName>
+<Hierarchy  MicClass="WinButton">
+<ObjectName><![CDATA[OK]]></ObjectName>
+</Hierarchy>
+</Hierarchy>
+</Hierarchy>
+</ObjectChange>
+<ObjectChange Operation="Added">
+<Hierarchy  MicClass="Window">
+<ObjectName><![CDATA[Flight Reservation]]></ObjectName>
+<Hierarchy  MicClass="WinEdit">
+<ObjectName><![CDATA[Name:]]></ObjectName>
+</Hierarchy>
+</Hierarchy>
+</ObjectChange>
+<ObjectChange Operation="Added">
+<Hierarchy  MicClass="Window">
+<ObjectName><![CDATA[Flight Reservation]]></ObjectName>
+<Hierarchy  MicClass="WinButton">
+<ObjectName><![CDATA[Insert Order]]></ObjectName>
+</Hierarchy>
+</Hierarchy>
+</ObjectChange>
+</ActionMaintenanceSummary>
+<ActionMaintenanceSummary Action="Exit" Objects="1" Updated="0" Added="1" LinesTotal="0" LinesUpdated="0">
+<ObjectChange Operation="Added">
+<Hierarchy  MicClass="Window">
+<ObjectName><![CDATA[Flight Reservation]]></ObjectName>
+</Hierarchy>
+</ObjectChange>
+</ActionMaintenanceSummary>
+</TestMaintenanceSummary><NodeArgs eType="StartTest" icon="1" nRep="3" >
+<Disp><![CDATA[Test mf4 Summary]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>
