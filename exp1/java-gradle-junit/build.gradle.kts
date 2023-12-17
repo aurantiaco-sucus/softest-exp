@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("info.solidsoft.pitest").version("1.15.0")
 }
 
 group = "org.example"
@@ -12,8 +13,14 @@ repositories {
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    implementation("org.pitest:pitest-junit5-plugin:1.2.0")
 }
 
 tasks.test {
     useJUnitPlatform()
+}
+
+pitest {
+    targetClasses = listOf("cn.*", "net.*")
+    outputFormats = listOf("XML", "HTML")
 }
